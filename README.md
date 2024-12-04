@@ -1,2 +1,2 @@
-# TEMPLATE plugin
-This is a template plugin description
+# JavaScript editor plugin
+JavaScript editor with MSScriptControl or JINT
