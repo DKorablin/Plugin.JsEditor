@@ -21,8 +21,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Danila Korablin 2017-2024")]
 #endif
 
-/*
-if $(ConfigurationName) == Release (
+/*if $(ConfigurationName) == Release (
 ..\..\..\..\..\ILMerge.exe /targetplatform:v4  "/out:$(ProjectDir)..\..\bin\$(TargetFileName)" "$(TargetPath)" "$(TargetDir)FastColoredTextBox.dll" "$(TargetDir)Jint.dll" "/lib:..\..\..\..\SAL\bin"
-)
-*/
+)*/
