@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using Jint;
-using Jint.Parser;
 using Jint.Runtime;
 
 namespace Plugin.JsEditor.Script
@@ -35,18 +34,14 @@ namespace Plugin.JsEditor.Script
 			{
 				this._engine.Execute(js);
 				return null;
-			} catch(ParserException exc)
-			{
-				Exception exc1 = new JsRuntimeException(exc.Message, exc.LineNumber);
-				throw exc1;
 			} catch(JavaScriptException exc)
 			{
-				Exception exc1 = new JsRuntimeException(exc.Message, exc.LineNumber);
+				Exception exc1 = new JsRuntimeException(exc.Message, exc.Location.ToString());
 				throw exc1;
 			}
 		}
 
 		private static void Alert(Object message)
-			=> MessageBox.Show(message == null ? "null" : message.ToString());
+			=> MessageBox.Show(message?.ToString() ?? "null");
 	}
 }

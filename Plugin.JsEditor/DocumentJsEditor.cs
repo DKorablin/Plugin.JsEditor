@@ -45,7 +45,7 @@ namespace Plugin.JsEditor
 				jsHelper.Eval(txtSource.Text);
 			} catch(JsRuntimeException exc)
 			{
-				ListViewItem item = new ListViewItem(new String[] { exc.LineNumber.ToString("n0"), exc.Message, });
+				ListViewItem item = new ListViewItem(new String[] { exc.Location.ToString(), exc.Message, });
 				lvErrors.Items.Add(item);
 				lvErrors.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			}

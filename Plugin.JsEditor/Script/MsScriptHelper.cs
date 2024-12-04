@@ -74,7 +74,7 @@ namespace Plugin.JsEditor.Script
 			if(String.IsNullOrEmpty(message))
 				message = managedException.Message;
 
-			throw new JsRuntimeException(message, error.Line);
+			throw new JsRuntimeException(message, error.Line.ToString());
 		}
 
 		protected virtual void LoadShim()

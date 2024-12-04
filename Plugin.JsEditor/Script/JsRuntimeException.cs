@@ -4,10 +4,10 @@ namespace Plugin.JsEditor.Script
 {
 	internal class JsRuntimeException : ApplicationException
 	{
-		public Int32 LineNumber { get; set; }
+		public String Location { get; }
 
-		public JsRuntimeException(String message, Int32 lineNumber)
+		public JsRuntimeException(String message, String location)
 			: base(message)
-			=> this.LineNumber = lineNumber;
+			=> this.Location = location;
 	}
 }
