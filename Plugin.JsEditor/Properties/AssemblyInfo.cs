@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: ComVisible(false)]
 [assembly: Guid("5953cd13-d4b0-407b-88ab-ed41113f1b93")]
 [assembly: System.CLSCompliant(true)]
 
@@ -9,15 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyMetadata("ProjectUrl", "https://github.com/DKorablin/Plugin.JsEditor")]
 #else
 
-[assembly: AssemblyTitle("Plugin.JsEditor")]
 [assembly: AssemblyDescription("JavaScript editor with MSScriptControl or JINT")]
-#if DEBUG
-[assembly: AssemblyConfiguration("Debug")]
-#else
-[assembly: AssemblyConfiguration("Release")]
-#endif
-[assembly: AssemblyCompany("Danila Korablin")]
-[assembly: AssemblyProduct("Plugin.JsEditor")]
 [assembly: AssemblyCopyright("Copyright © Danila Korablin 2017-2024")]
 #endif
 
