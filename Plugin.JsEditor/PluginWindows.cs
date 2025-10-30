@@ -12,16 +12,15 @@ namespace Plugin.JsEditor
 		private PluginSettings _settings;
 		private Dictionary<String, DockState> _documentTypes;
 
-		#region Properties
 		internal TraceSource Trace => this._trace ?? (this._trace = PluginWindows.CreateTraceSource<PluginWindows>());
 
 		internal IHost Host { get; }
 		internal IHostWindows HostWindows => this.Host as IHostWindows;
 
-		/// <summary>Настройки для взаимодействия из хоста</summary>
+		/// <summary>Settings for interaction from the host</summary>
 		Object IPluginSettings.Settings => this.Settings;
 
-		/// <summary>Настройки для взаимодействия из плагина</summary>
+		/// <summary>Settings for interaction from the plugin</summary>
 		public PluginSettings Settings
 		{
 			get
@@ -50,9 +49,7 @@ namespace Plugin.JsEditor
 				return this._documentTypes;
 			}
 		}
-		#endregion Properties
 
-		#region Methods
 		public PluginWindows(IHost host)
 			=> this.Host = host ?? throw new ArgumentNullException(nameof(host));
 
@@ -112,6 +109,5 @@ namespace Plugin.JsEditor
 			result.Listeners.AddRange(System.Diagnostics.Trace.Listeners);
 			return result;
 		}
-		#endregion Methods
 	}
 }

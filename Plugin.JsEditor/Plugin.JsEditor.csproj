@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Plugin.JsEditor</RootNamespace>
+		<Deterministic>false</Deterministic>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
+		<NoWarn>CA1416</NoWarn>
+	</PropertyGroup>
+
+	<!--nuspec-->
+	<PropertyGroup>
+		<PackageId>AlphaOmega.SAL.Plugin.JsEditor</PackageId>
+		<Version>$(Version)</Version>
+		<Title>Javascript editor</Title>
+		<Description>JavaScript editor with MSScriptControl or JINT</Description>
+		<Authors>Danila Korablin</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>docs\README.md</PackageReadmeFile>
+		<PackageIcon>docs\SAL.100.png</PackageIcon>
+		<RepositoryUrl>https://github.com/DKorablin/Plugin.JsEditor</RepositoryUrl>
+		<PackageTags>SAL;plugin;windows;JsCompiler;Runtime</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\docs" />
+		<None Include="..\Images.Shared\SAL.100.png" Pack="true" PackagePath="\docs" />
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<PublishSingleFile>true</PublishSingleFile>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(GenerateDocumentationFile)' == 'False'">
+		<!--This Hack is added to change output folder for local builds because Directory.Build.props file is maintained centrally using shared project-->
+		<OutputPath>$(SolutionDir)..\..\bin\$(SolutionName)</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttributes Include="AssemblyMetadata">
+			<_Parameter1>ProjectUrl</_Parameter1>
+			<_Parameter2>https://github.com/DKorablin/Plugin.JsEditor</_Parameter2>
+		</AssemblyAttributes>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SAL.Windows">
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</PackageReference>
+		<PackageReference Include="FCTB" Condition="'$(TargetFramework)'=='net48'" />
+		<PackageReference Include="Vax-FCTB" Condition="'$(TargetFramework)'=='net8.0-windows'" />
+		<PackageReference Include="Acornima" />
+		<PackageReference Include="Jint" />
+		<Reference Include="MSScriptControl">
+			<HintPath>MSScriptControl.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Target Name="ExcludeSystemAssemblies" AfterTargets="ResolveReferences">
+		<!-- Exclude shared assemblies from copy to the output directory -->
+		<ItemGroup>
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::Copy('%(Filename)').StartsWith('System.'))" />
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::Copy('%(Filename)').StartsWith('Microsoft.Win32.'))" />
+		</ItemGroup>
+	</Target>
+</Project>

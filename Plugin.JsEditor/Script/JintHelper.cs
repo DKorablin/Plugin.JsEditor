@@ -9,7 +9,7 @@ namespace Plugin.JsEditor.Script
 {
 	internal class JintHelper : IJsHelper
 	{
-		private readonly Engine _engine = new Engine();
+		private readonly Engine _engine;
 		private readonly StringBuilder _payload = new StringBuilder();
 
 		public JintHelper()

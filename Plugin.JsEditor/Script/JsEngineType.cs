@@ -1,6 +1,6 @@
 ﻿namespace Plugin.JsEditor.Script
 {
-	/// <summary>Тип движка рендера JavaScript</summary>
+	/// <summary>The type of JavaScript renderer</summary>
 	public enum JsEngineType
 	{
 		/// <summary>MS Script Control (x86 only)</summary>

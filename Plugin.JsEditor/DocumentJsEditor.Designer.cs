@@ -157,7 +157,6 @@
 			this.txtSource.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.txtSource.Font = new System.Drawing.Font("Consolas", 9.75F);
 			this.txtSource.IsReplaceMode = false;
-			this.txtSource.Language = FastColoredTextBoxNS.Language.JS;
 			this.txtSource.LeftBracket = '(';
 			this.txtSource.LeftBracket2 = '{';
 			this.txtSource.LeftPadding = 17;

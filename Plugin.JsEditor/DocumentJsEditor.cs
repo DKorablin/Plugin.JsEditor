@@ -13,7 +13,14 @@ namespace Plugin.JsEditor
 		private IWindow Window => (IWindow)base.Parent;
 
 		public DocumentJsEditor()
-			=> InitializeComponent();
+		{
+			this.InitializeComponent();
+#if NETFRAMEWORK
+			this.txtSource.Language = FastColoredTextBoxNS.Language.JS;
+#else
+			this.txtSource.Language = FastColoredTextBoxNS.Text.Language.JS;
+#endif
+		}
 
 		protected override void OnCreateControl()
 		{
@@ -56,7 +63,7 @@ namespace Plugin.JsEditor
 		private void lvErrors_MouseDoubleClick(Object sender, MouseEventArgs e)
 		{
 			if(lvErrors.SelectedItems.Count > 0)
-			{//TODO: В JintHelper'е, после основного кода, идёт код из внешних файлов, так что тут надо учесть эту возможность
+			{//TODO: In JintHelper, after the main code, there is code from external files, so this possibility must be taken into account here.
 				Int32 lineNumber = Int32.Parse(lvErrors.SelectedItems[0].SubItems[colErrorLine.Index].Text) - 1;
 				txtSource.Selection = txtSource.GetLine(lineNumber);
 				txtSource.DoSelectionVisible();
