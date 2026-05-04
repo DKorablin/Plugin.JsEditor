@@ -8,7 +8,7 @@ namespace Plugin.JsEditor
 {
 	public partial class DocumentJsEditor : UserControl
 	{
-		private PluginWindows Plugin => (PluginWindows)this.Window.Plugin;
+		private PluginWindows Plugin => (PluginWindows)this.Window.Plugin.Instance;
 
 		private IWindow Window => (IWindow)base.Parent;
 
